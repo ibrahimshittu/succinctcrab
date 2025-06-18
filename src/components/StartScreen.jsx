@@ -4,7 +4,7 @@ import './StartScreen.css';
 const StartScreen = ({ username, setUsername, onStart, onHowToPlay }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username.trim()) {
+    if (username.trim() && username.includes('@')) {
       console.log('StartScreen submitting username:', username);
       onStart({ username });
     }
@@ -28,7 +28,11 @@ const StartScreen = ({ username, setUsername, onStart, onHowToPlay }) => {
           />
         </div>
         <div className="button-group">
-          <button type="submit" className="start-button" disabled={!username.trim()}>
+          <button
+            type="submit"
+            className="start-button"
+            disabled={!username.trim() || !username.includes('@')}
+          >
             Start Game
           </button>
           <button type="button" className="how-to-play-button" onClick={onHowToPlay}>
