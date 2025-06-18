@@ -1,0 +1,56 @@
+.leaderboard-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 450px;
+  margin: 20px auto;
+  color: white;
+  overflow-y: auto;
+  max-height: 400px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.leaderboard-container::-webkit-scrollbar {
+  display: none;
+}
+
+.leaderboard-container h3 {
+  color: #1E90FF;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.leaderboard-list {
+  list-style: none;
+  padding: 0;
+}
+
+.leaderboard-entry {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  column-gap: 20px;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #444;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.score,
+.level {
+  text-align: right;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}

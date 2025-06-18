@@ -1,0 +1,67 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 30px auto;
+  max-width: 720px; /* Increased width */
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.game-canvas {
+  width: 100%;
+  max-width: 700px; /* Make canvas scale nicely on wider screens */
+  height: 420px; /* Increased height */
+  border: 2px solid #1E90FF;
+  border-radius: 12px;
+  touch-action: none;
+  background-color: #000; /* Optional for contrast */
+}
+
+.game-controls {
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+  justify-content: center;
+  flex-wrap: wrap; /* Prevents overflow on smaller screens */
+}
+
+.pause-button,
+.clear-bombs-button,
+.submit-button {
+  padding: 14px 26px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #1E90FF;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pause-button:hover,
+.clear-bombs-button:hover,
+.submit-button:hover {
+  background-color: #6A0DAD;
+}
+
+.clear-bombs-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.submission-status {
+  margin-top: 18px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.submission-status.success {
+  color: green;
+}
+
+.submission-status.error {
+  color: red;
+}
