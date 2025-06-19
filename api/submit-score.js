@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
   }
 
   const { username, score, level, proof, public_inputs } = req.body;
+  const cleanUsername = username.replace(/^@/, '');
 
   console.log('Received /submit-score:', JSON.stringify(req.body));
 
@@ -57,25 +58,25 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Invalid SP1 proof or public inputs' });
     }
 
-    const existingEntry = await collection.findOne({ username });
+    const existingEntry = await collection.findOne({ username: cleanUsername });
     if (existingEntry) {
       if (score > existingEntry.score) {
         await collection.updateOne(
-          { username },
+          { username: cleanUsername },
           { $set: { score, level, timestamp: Date.now() } }
         );
-        console.log(`Updated score for ${username}: ${score}, level: ${level}`);
+        console.log(`Updated score for ${cleanUsername}: ${score}, level: ${level}`);
       } else {
-        console.log(`Score not updated for ${username}: current ${existingEntry.score} >= new ${score}`);
+        console.log(`Score not updated for ${cleanUsername}: current ${existingEntry.score} >= new ${score}`);
       }
     } else {
       await collection.insertOne({
-        username,
+        username: cleanUsername,
         score,
         level,
         timestamp: Date.now(),
       });
-      console.log(`Inserted new score for ${username}: ${score}, level: ${level}`);
+      console.log(`Inserted new score for ${cleanUsername}: ${score}, level: ${level}`);
     }
 
     return res.status(200).json({ message: 'Your Score is proved' });

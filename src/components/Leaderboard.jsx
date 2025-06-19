@@ -14,24 +14,42 @@ const Leaderboard = ({ leaderboard, error }) => {
         <p className="error">{error}</p>
       ) : sortedLeaderboard.length > 0 ? (
         <ol className="leaderboard-list">
-          {sortedLeaderboard.map((entry, index) => (
-            <li key={entry._id || `${entry.username}-${entry.timestamp}`} className="leaderboard-entry">
-              <div className="user-info">
-                {index === 0 && <span className="badge gold" aria-label="Gold badge">🏆</span>}
-                {index === 1 && <span className="badge silver" aria-label="Silver badge">🥈</span>}
-                {index === 2 && <span className="badge bronze" aria-label="Bronze badge">🥉</span>}
-                {index > 2 && <span className="position" aria-label={`Position ${index + 1}`}>{index + 1}</span>}
-                <span className="username">{entry.username}</span>
-              </div>
-              <span className="score">Score: {entry.score}</span>
-              <span className="level">Level: {entry.level}</span>
-              {entry.explorer_url && (
-                <a href={entry.explorer_url} target="_blank" rel="noopener noreferrer" className="explorer-link">
-                  View Proof
-                </a>
-              )}
-            </li>
-          ))}
+          {sortedLeaderboard.map((entry, index) => {
+            const avatar =
+              index === 0 ? '🐋' :
+              index === 1 ? '🦈' :
+              index === 2 ? '🐬' : '🦀';
+
+            const avatarStyle = {
+              fontSize: index === 0 ? '32px' :
+                         index === 1 ? '26px' :
+                         index === 2 ? '22px' : '18px',
+              marginRight: '8px'
+            };
+
+            const badge =
+              index === 0 ? <span className="badge gold" aria-label="Gold badge">🏆</span> :
+              index === 1 ? <span className="badge silver" aria-label="Silver badge">🥈</span> :
+              index === 2 ? <span className="badge bronze" aria-label="Bronze badge">🥉</span> :
+              <span className="position" aria-label={`Position ${index + 1}`}>{index + 1}</span>;
+
+            return (
+              <li key={entry._id || `${entry.username}-${entry.timestamp}`} className="leaderboard-entry">
+                <div className="user-info">
+                  <span style={avatarStyle}>{avatar}</span>
+                  {badge}
+                  <span className="username">{entry.username.replace(/^@/, '')}</span>
+                </div>
+                <span className="score">Score: {entry.score}</span>
+                <span className="level">Level: {entry.level}</span>
+                {entry.explorer_url && (
+                  <a href={entry.explorer_url} target="_blank" rel="noopener noreferrer" className="explorer-link">
+                    View Proof
+                  </a>
+                )}
+              </li>
+            );
+          })}
         </ol>
       ) : (
         <p>No scores yet!</p>
