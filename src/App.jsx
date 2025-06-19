@@ -49,12 +49,8 @@ const App = () => {
 
   return (
 
-    <div>
-    <h1 style={{ color: 'red' }}>App loaded</h1>
-  
-  </div>
-
-    {/* <div className="app-container">
+    
+    <div className="app-container">
       {gameState === 'start' && (
         <div className="start-screen-container">
           <StartScreen
@@ -78,11 +74,8 @@ const App = () => {
           <Leaderboard leaderboard={leaderboard} error={leaderboardError} />
         </div>
       )}
-         );
-    </div> */}
-
-    
- 
+    </div>
+  );
 };
 
 export default App;
