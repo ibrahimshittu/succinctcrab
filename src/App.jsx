@@ -1,4 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react';
+return (
+  <div>
+    <h1 style={{ color: 'red' }}>App loaded</h1>
+    {/* keep your existing logic below
+
+    import React, { useState, useCallback, useEffect } from 'react';
 import StartScreen from './components/StartScreen';
 import Game from './components/Game';
 import Leaderboard from './components/Leaderboard';
@@ -77,3 +82,8 @@ const App = () => {
 };
 
 export default App;
+    
+    
+    */}
+  </div>
+);
