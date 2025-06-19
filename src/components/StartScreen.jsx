@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './StartScreen.css';
 
 const StartScreen = ({ username, setUsername, onStart, onHowToPlay }) => {
