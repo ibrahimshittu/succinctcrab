@@ -1,9 +1,4 @@
-return (
-  <div>
-    <h1 style={{ color: 'red' }}>App loaded</h1>
-    {/* keep your existing logic below
-
-    import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import StartScreen from './components/StartScreen';
 import Game from './components/Game';
 import Leaderboard from './components/Leaderboard';
@@ -53,7 +48,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app-container">
+
+    <div>
+    <h1 style={{ color: 'red' }}>App loaded</h1>
+  
+  </div>
+
+    {/* <div className="app-container">
       {gameState === 'start' && (
         <div className="start-screen-container">
           <StartScreen
@@ -77,13 +78,11 @@ const App = () => {
           <Leaderboard leaderboard={leaderboard} error={leaderboardError} />
         </div>
       )}
-    </div>
-  );
+         );
+    </div> */}
+
+    
+ 
 };
 
 export default App;
-    
-    
-    */}
-  </div>
-);
