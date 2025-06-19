@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import './Game.css';
 
-// Mock SP1 proof generation (replace with actual SP1 integration)
 const generateSP1Proof = (score, level) => {
   return {
     proof: 'sp1_proof_data',
@@ -23,11 +22,10 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
   const objects = useRef([]).current;
   const [maxObjects, setMaxObjects] = useState(5);
   const [startTime, setStartTime] = useState(null);
-  const [fallSpeedMultiplier, setFallSpeedMultiplier] = useState(0.5); // Slower initial speed for level 1
+  const [fallSpeedMultiplier, setFallSpeedMultiplier] = useState(0.5);
   const [bombSpawnChance, setBombSpawnChance] = useState(0.2);
   const lastSpawnTime = useRef(0);
 
-  // Log username on mount
   useEffect(() => {
     console.log('Game component mounted with username:', username);
   }, [username]);
@@ -116,7 +114,7 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
         setSubmissionStatus('');
         setMissedObjects(0);
         setMaxObjects(5);
-        setFallSpeedMultiplier(0.5); // Reset to slow speed
+        setFallSpeedMultiplier(0.5);
         setBombSpawnChance(0.2);
         setStartTime(null);
         setLevelUpTime(null);
@@ -146,10 +144,8 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
         const finalScoreInt = Math.floor(finalScore);
         const finalLevelInt = Math.floor(finalLevel);
 
-        // Log initial state
         console.log('Preparing submission:', { username, score: finalScoreInt, level: finalLevelInt });
 
-        // Validate payload
         if (!username || typeof username !== 'string' || username.trim() === '') {
           console.error('Client validation failed: Invalid or missing username');
           throw new Error('Username is required');
@@ -163,7 +159,6 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
           throw new Error('Level must be a positive integer');
         }
 
-        // Generate SP1 proof
         const { proof, public_inputs } = generateSP1Proof(finalScoreInt, finalLevelInt);
         console.log('SP1 proof generated:', { proof, public_inputs });
 
@@ -212,7 +207,7 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
       setLevel(1);
       setMissedObjects(0);
       setMaxObjects(5);
-      setFallSpeedMultiplier(0.5); // Slow speed for level 1
+      setFallSpeedMultiplier(0.5);
       setBombSpawnChance(0.2);
       setCanClearBombs(true);
       objects.length = 0;
@@ -260,10 +255,10 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
         ctx.font = '15px Arial';
         ctx.fillStyle = 'white';
         ctx.fillText('Tap crabs (colored objects) to earn +2 points.', 300, 120);
-        ctx.fillText('Don’t miss 50 crabs or the game ends!', 300, 150); // Updated to 50
+        ctx.fillText('Don’t miss 50 crabs or the game ends!', 300, 150);
         ctx.fillText('Tap small bombs to lose -4 points.', 300, 180);
         ctx.fillText('Tap big bomb and you lose!', 300, 210);
-        ctx.fillText('Slow power-up reduces speed.', 300, 240);
+        ctx.fillText('Click pause to pause game.', 300, 240);
         ctx.fillText('Clear power-up removes bombs.', 300, 270);
         ctx.fillStyle = '#1E90FF';
         ctx.fillRect(225, 352.5, 150, 45);
@@ -286,7 +281,7 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
         ctx.textAlign = 'left';
         ctx.fillText(`Score: ${score}`, 10, 20);
         ctx.fillText(`Level: ${level}`, 10, 40);
-        ctx.fillText(`Missed: ${missedObjects}/50`, 10, 60); // Updated to 50
+        ctx.fillText(`Missed: ${missedObjects}/50`, 10, 60);
 
         if (levelUpTime && Date.now() - levelUpTime < 2000) {
           ctx.font = '24px Arial';
@@ -327,7 +322,7 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
               setMissedObjects((prev) => {
                 const newMissed = prev + 1;
                 console.log(`Missed object, total: ${newMissed}`);
-                if (newMissed >= 50) { // Updated to 50
+                if (newMissed >= 50) {
                   setGameOver(true);
                   setGameOverReason('Game Over: Too Many Missed Crabs!');
                 }
@@ -344,7 +339,7 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
             setLevel((prev) => {
               const newLevel = prev + 1;
               console.log(`Level up to: ${newLevel}`);
-              setFallSpeedMultiplier(0.5 * (newLevel + 1)); // Progressive speed increase
+              setFallSpeedMultiplier(0.5 * (newLevel + 1));
               setBombSpawnChance(Math.min(0.4, bombSpawnChance + 0.05));
               if (newLevel % 3 === 0) {
                 setMaxObjects((prev) => prev + 1);
@@ -384,7 +379,9 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
     startTime,
     levelUpTime,
     isPaused,
-    submissionStatus
+    submissionStatus,
+    gameOverReason,
+    objects
   ]);
 
   return (
