@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchLeaderboard = useCallback(async () => {
     try {
-      const response = await fetch('https://succinctcrab-game.vercel.app/api/leaderboard');
+      const response = await fetch('/api/leaderboard');
       if (!response.ok) {
         throw new Error(`Failed to fetch leaderboard: HTTP ${response.status}`);
       }
