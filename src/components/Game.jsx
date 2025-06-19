@@ -180,7 +180,7 @@ const Game = ({ gameState, username, setGameState, onBack, fetchLeaderboard, set
         console.log('Submitting score payload:', JSON.stringify(payload));
 
         setSubmissionStatus('Submitting score...');
-        const response = await fetch('https://succinctcrab-game.vercel.app/api/submit-score', {
+        const response = await fetch('/api/submit-score', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
