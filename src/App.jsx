@@ -50,7 +50,6 @@ const App = () => {
   return (
     <div className="app-container">
     <h1 style={{ color: 'red' }}>Hello from App.jsx</h1>
-    {/* ... rest of your game logic ... */}
   </div>
     
     <div className="app-container">
