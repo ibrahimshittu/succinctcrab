@@ -1,9 +1,10 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #ffffff; /* Text color */
-  background-image:url('/public/backgroundImage.png'); /* Dark background */
+  background-image: url("/backgroundImage.png"); /* Dark background */
   scroll-behavior: smooth; /* Smooth scrolling */
 }
 

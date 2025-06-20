@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "api/*.js", "use": "@vercel/node" },
-    { "src": "package.json", "use": "@vercel/static-build" }
-  ],
+  "functions": {
+    "pages/api/*.js": {
+      "runtime": "@vercel/node"
+    }
+  },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/pages/api/$1"
+    }
   ]
 }
