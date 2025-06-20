@@ -13,7 +13,7 @@ html {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-image: url("/backgroundImage.png");
+  background-image: url("../public/backgroundImage.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Fix background */
