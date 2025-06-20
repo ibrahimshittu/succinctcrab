@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "pages/api/*.js": {
-      "runtime": "@vercel/node"
+      "runtime": "@vercel/node@18.x"
     }
   },
   "rewrites": [
